@@ -33,20 +33,6 @@ export default function Footer() {
             <span className="font-semibold underline">Jose Acosta</span> All
             Rights Reserved.
           </p>
-          {/* <div className="flex space-x-3">
-            <Link href="https://www.linkedin.com/in/josemiguelacosta/">
-              <ImLinkedin
-                size={20}
-                className="text-neutral-400 cursor-pointer hover:text-neutral-700"
-              />
-            </Link>
-            <Link href="https://github.com/flowseph1">
-              <AiFillGithub
-                size={20}
-                className="text-neutral-400 cursor-pointer hover:text-neutral-700"
-              />
-            </Link>
-          </div> */}
         </div>
       </Container>
     </footer>

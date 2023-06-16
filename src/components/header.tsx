@@ -6,6 +6,7 @@ import { Nav } from "@/components/nav";
 import { useRouter } from "next/navigation";
 import { TbSmartHome } from "react-icons/tb";
 
+
 export function Header() {
   const route = useRouter();
 
@@ -26,6 +27,7 @@ export function Header() {
             <TbSmartHome size={25} className="text-neutral-700" />
             <Nav />
           </div>
+
         </div>
       </Container>
     </header>
