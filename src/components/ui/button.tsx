@@ -9,11 +9,11 @@ interface ButtonProps {
 }
 
 function Button({ text, intent, size, rounded }: ButtonProps) {
-  const button = cva("button cursor-pointer", {
+  const button = cva("button cursor-pointer transition-all duration-300", {
     variants: {
       intent: {
         primary: "bg-zinc-900 text-white hover:bg-zinc-800",
-        secondary: "bg-zinc-300 hover:bg-zinc-400/40",
+        secondary: "bg-zinc-200 hover:bg-zinc-400/40 text-neutral-800",
         outline: "border-2 border-zinc-900 text-zinc-900 hover:bg-zinc-200",
       },
       size: {

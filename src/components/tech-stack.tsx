@@ -11,9 +11,11 @@ export function TechStack({ technologies }: { technologies: Tech[] }) {
       <Container>
         <div className="flex flex-col gap-7">
           <Title>Tech Stack</Title>
-          <Subtitle>Main technologies I use to build my projects.</Subtitle>
+          <Subtitle>
+            Some of the technologies I use to build my projects.
+          </Subtitle>
           <div className="mb-3">
-            <div className="flex max-w-[800px] mx-auto flex-wrap items-center justify-evenly gap-y-3">
+            <div className="flex max-w-[800px] mx-auto flex-wrap items-center justify-evenly gap-y-5">
               {technologies.map((tech) => (
                 <Tech key={tech.name} tech={tech} />
               ))}
