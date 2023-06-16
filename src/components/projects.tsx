@@ -18,7 +18,7 @@ export function Projects({ projects }: { projects: Project[] }) {
           <ProjectList projects={projects} />
           <div className="flex justify-center">
             <Button
-              text="Discover more"
+              text="Want more?"
               intent="secondary"
               size="sm"
               rounded="full"
