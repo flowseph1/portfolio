@@ -19,7 +19,7 @@ export function Header() {
               className="cursor-pointer text-neutral-700 hover:text-neutral-900 transition-colors"
               onClick={() => route.push("/")}
             />
-            {/* <p className="font-bold text-neutral-700">Jose Acosta</p> */}
+            <p className="font-bold text-neutral-700">JOSE ACOSTA</p>
           </div>
           <Nav />
         </div>

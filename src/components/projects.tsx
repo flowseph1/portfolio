@@ -16,7 +16,7 @@ export function Projects({ projects }: { projects: Project[] }) {
           <ProjectList projects={projects} />
           <div className="flex justify-center">
             <Button
-              text="See All Projects"
+              text="Discover more"
               intent="secondary"
               size="sm"
               rounded="full"
@@ -40,7 +40,7 @@ export async function ProjectList({ projects }: { projects: Project[] }) {
 
 export function ProjectItem({ project }: { project: Project }) {
   return (
-    <div className="flex flex-1 border group border-transparent hover:border-gray-300 rounded-md min-h-[20rem] overflow-hidden cursor-pointer">
+    <div className="relative flex flex-1 border group border-transparent hover:border-gray-300 rounded-md min-h-[20rem] overflow-hidden cursor-pointer">
       <div className="flex flex-col w-full">
         <div className="flex items-end px-5 pt-5">
           <Image
@@ -66,6 +66,8 @@ export function ProjectItem({ project }: { project: Project }) {
           </div>
         </div>
       </div>
+
+      <div className="opacity-0 groud-hover:opacity-100 transition-opacity duration-75 absolute inset-0 -z-10 bg-gradient-to-r from-purple-600 to-blue-600" />
     </div>
   );
 }
