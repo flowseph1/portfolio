@@ -71,7 +71,7 @@ export const dashboardData: Dashboard = {
       id: 4,
       live: "https://project-1.com",
       slug: "project-1",
-      tech: ["React", "JavaScript", "Redux", "React Hook Form"],
+      tech: ["Next JS", "React", "JavaScript", "Redux", "React Hook Form"],
     },
 
     {
