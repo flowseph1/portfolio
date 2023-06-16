@@ -54,7 +54,7 @@ export const dashboardData: Dashboard = {
       id: 3,
       live: "https://project-1.com",
       slug: "project-1",
-      tech: ["Next JS", "React JS", "TypeScript"],
+      tech: ["Next JS", "React JS", "TypeScript", "Framer Motion", "Zod"],
     },
 
     {
@@ -71,7 +71,7 @@ export const dashboardData: Dashboard = {
       id: 4,
       live: "https://project-1.com",
       slug: "project-1",
-      tech: ["React", "JavaScript"],
+      tech: ["Next JS", "React", "JavaScript", "Redux", "React Hook Form"],
     },
 
     {
@@ -88,7 +88,7 @@ export const dashboardData: Dashboard = {
       id: 6,
       live: "https://project-1.com",
       slug: "project-1",
-      tech: ["Next JS", "React JS", "TypeScript"],
+      tech: ["Next JS", "React JS", "TypeScript", "Tailwind CSS", "Zod"],
     },
 
     {

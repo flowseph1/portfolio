@@ -4,6 +4,7 @@ import { Container } from "@/components/container";
 import { Logo } from "@/components/logo";
 import { Nav } from "@/components/nav";
 import { useRouter } from "next/navigation";
+import { TbSmartHome } from "react-icons/tb";
 
 export function Header() {
   const route = useRouter();
@@ -19,9 +20,12 @@ export function Header() {
               className="cursor-pointer text-neutral-700 hover:text-neutral-900 transition-colors"
               onClick={() => route.push("/")}
             />
-            {/* <p className="font-bold text-neutral-700">Jose Acosta</p> */}
+            <p className="font-bold text-neutral-700">JOSE ACOSTA</p>
           </div>
-          <Nav />
+          <div className="flex justify-center items-center space-x-6">
+            <TbSmartHome size={25} className="text-neutral-700" />
+            <Nav />
+          </div>
         </div>
       </Container>
     </header>
