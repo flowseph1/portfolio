@@ -41,8 +41,8 @@ export async function ProjectList({ projects }: { projects: Project[] }) {
 
   return (
     <div className="relative flex gap-5 h-[40rem] overflow-hidden mb-10 bg-project-background">
-      {matrix.map((col) => (
-        <div className="flex flex-1 flex-col space-y-5">
+      {matrix.map((col, index) => (
+        <div className="flex flex-1 flex-col space-y-5" key={index}>
           {col.map((project) => (
             <ProjectItem project={project} key={project.id} />
           ))}
@@ -83,7 +83,7 @@ export function ProjectItem({ project }: { project: Project }) {
             </p>
             <div className="flex gap-2 flex-wrap">
               {project.tech.map((tech) => (
-                <RoundedItem>{tech}</RoundedItem>
+                <RoundedItem key={tech}>{tech}</RoundedItem>
               ))}
             </div>
           </div>
