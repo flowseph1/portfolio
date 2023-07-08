@@ -1,8 +1,6 @@
 "use client";
 
 import { cva } from "class-variance-authority";
-import { useRouter } from "next/navigation";
-import React from "react";
 
 interface ButtonProps {
   text: string;
@@ -41,13 +39,11 @@ function Button({ text, intent, size, rounded, onClick, href }: ButtonProps) {
     },
   });
 
-  const router = useRouter();
-
   return (
     <button
       className={button({ intent, size, rounded })}
       onClick={() =>
-        onClick ? onClick() : href ? router.push(href) : undefined
+        onClick ? onClick() : href ? window.open(href, "_ blank") : {}
       }
     >
       {text}
