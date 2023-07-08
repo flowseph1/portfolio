@@ -10,16 +10,23 @@ export default function Footer() {
       <Container>
         <div className="py-10">
           <div className="flex space-x-5 items-center mb-4">
-            <Logo className="text-neutral-500 w-[60px]" />
+            <Logo
+              width={25}
+              height={25}
+              className="cursor-pointer text-neutral-700 hover:text-neutral-900 transition-colors"
+            />
             <div className="bg-neutral-300 h-[50px] w-[1px]" />
             <div className="flex space-x-3">
-              <Link href="https://www.linkedin.com/in/josemiguelacosta/">
+              <Link
+                target="_blank"
+                href="https://www.linkedin.com/in/josemiguelacosta/"
+              >
                 <FaLinkedinIn
                   size={25}
                   className="text-neutral-500 cursor-pointer hover:text-neutral-700"
                 />
               </Link>
-              <Link href="https://github.com/flowseph1">
+              <Link target="_blank" href="https://github.com/flowseph1">
                 <AiFillGithub
                   size={25}
                   className="text-neutral-500 cursor-pointer hover:text-neutral-700"

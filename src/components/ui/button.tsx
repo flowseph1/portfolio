@@ -1,4 +1,7 @@
+"use client";
+
 import { cva } from "class-variance-authority";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 interface ButtonProps {
@@ -6,9 +9,11 @@ interface ButtonProps {
   intent?: "primary" | "secondary" | "outline";
   size?: "sm" | "md" | "lg";
   rounded?: "sm" | "md" | "lg" | "full";
+  onClick?: () => void;
+  href?: string;
 }
 
-function Button({ text, intent, size, rounded }: ButtonProps) {
+function Button({ text, intent, size, rounded, onClick, href }: ButtonProps) {
   const button = cva("button cursor-pointer transition-all duration-300", {
     variants: {
       intent: {
@@ -36,7 +41,18 @@ function Button({ text, intent, size, rounded }: ButtonProps) {
     },
   });
 
-  return <div className={button({ intent, size, rounded })}>{text}</div>;
+  const router = useRouter();
+
+  return (
+    <button
+      className={button({ intent, size, rounded })}
+      onClick={() =>
+        onClick ? onClick() : href ? router.push(href) : undefined
+      }
+    >
+      {text}
+    </button>
+  );
 }
 
 export default Button;
