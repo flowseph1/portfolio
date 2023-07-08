@@ -56,7 +56,7 @@ export async function ProjectList({ projects }: { projects: Project[] }) {
 
 export function ProjectItem({ project }: { project: Project }) {
   return (
-    <Link href={`/projects/${project.slug}`}>
+    <Link href={`#`}>
       <div
         className="relative flex flex-1 border border-neutral-300 group rounded-2xl h-full]
       overflow-hidden cursor-pointer hover:bg-neutral-100 transition-all duration-400 scale-[98%] hover:scale-100
