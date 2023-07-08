@@ -4,16 +4,23 @@ import { Container } from "@/components/container";
 import { Subtitle } from "@/components/subtitle";
 import { Title } from "@/components/title";
 import Button from "@/components/ui/button";
-import Image from "next/image";
-import { ReactNode, useEffect, useRef, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { cx } from "class-variance-authority";
+import { AnimatePresence, motion } from "framer-motion";
+import { ReactNode, useEffect, useRef, useState } from "react";
 
 const options = [
-  <Option className="shadow-emerald-500">projects</Option>,
-  <Option className="shadow-pink-500">ideas</Option>,
-  <Option className="shadow-blue-500">applications</Option>,
-  <Option className="shadow-red-500">solutions</Option>,
+  <Option className="shadow-emerald-500" key={"project"}>
+    projects
+  </Option>,
+  <Option className="shadow-pink-500" key={"ideas"}>
+    ideas
+  </Option>,
+  <Option className="shadow-blue-500" key={"applications"}>
+    applications
+  </Option>,
+  <Option className="shadow-red-500" key={"solutions"}>
+    solutions
+  </Option>,
 ];
 
 export function Hero() {
@@ -60,7 +67,7 @@ export function Hero() {
             <Title>Front End Developer</Title>
             <div className="mb-5">
               <Subtitle className="space-y-1">
-                <div>I'm a passionate developer who loves to learn</div>
+                <div>I&apos;m a passionate developer who loves to learn</div>
                 <div className="flex items-center justify-center space-x-2">
                   <motion.div layout>new things and build awesome</motion.div>
                   <div className="overflow-hidden">
@@ -77,7 +84,11 @@ export function Hero() {
                 text="Contact Me"
                 href="mailto:jose.m.acosta1996@gmail.com"
               />
-              <Button text="Download CV" intent="outline" />
+              <Button
+                text="Download CV"
+                intent="outline"
+                href="https://www.linkedin.com/in/josemiguelacosta/"
+              />
             </div>
           </div>
         </div>

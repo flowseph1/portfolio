@@ -11,7 +11,7 @@ export function Experience({ experience }: { experience: IExperience[] }) {
       <Container>
         <div className="flex justify-center items-center flex-col space-y-5">
           <Title>Experience</Title>
-          <Subtitle>Companies I've worked with</Subtitle>
+          <Subtitle>Companies I&apos;ve worked with</Subtitle>
           <Timeline experience={experience} />
         </div>
       </Container>
@@ -29,7 +29,7 @@ export function Timeline({ experience }: { experience: IExperience[] }) {
         </div>
       </div>
       {experience.map((item) => (
-        <div className="flex">
+        <div className="flex" key={item.id}>
           <div className=" flex w-[350px] -mt-2 mr-3 justify-end ">
             <div className="relative glass-button py-1 h-fit mr-1">
               <p className="text-neutral-500 text-right text-sm">
@@ -78,7 +78,7 @@ export function ExperienceItem({ item }: { item: Experience }) {
         <p className="mb-3 text-sm text-neutral-500">Apps</p>
         <div className="flex flex-wrap gap-2">
           {item.projects?.map((project) => (
-            <RoundedItem>{project}</RoundedItem>
+            <RoundedItem key={project}>{project}</RoundedItem>
           ))}
         </div>
       </div>
