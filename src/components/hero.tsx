@@ -28,16 +28,30 @@ export function Hero() {
 
   const intervalRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  useEffect(() => {
-    clearInterval(intervalRef.current!);
-
-    const handleInterval = () => {
+  const interval = () => {
+    intervalRef.current = setTimeout(() => {
       setSelectedOption((prevOption) => (prevOption + 1) % options.length);
+      interval();
+    }, 1000 * 4);
+  };
+
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        clearInterval(intervalRef.current!);
+      } else {
+        interval();
+      }
     };
 
-    intervalRef.current = setInterval(handleInterval, 1000 * 4);
+    document.addEventListener("visibilitychange", handleVisibilityChange);
 
-    return () => clearInterval(intervalRef.current!);
+    interval();
+
+    return () => {
+      clearInterval(intervalRef.current!);
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+    };
   }, []);
 
   return (
@@ -68,14 +82,17 @@ export function Hero() {
             <div className="mb-5">
               <Subtitle className="space-y-1">
                 <div>I&apos;m a passionate developer who loves to learn</div>
-                <div className="flex items-center justify-center space-x-2">
-                  <motion.div layout>new things and build awesome</motion.div>
-                  <div className="overflow-hidden">
-                    <AnimatePresence mode="wait" initial={false}>
+                <motion.div
+                  className="flex items-center justify-center space-x-2"
+                  layout
+                >
+                  <AnimatePresence mode="wait" initial={false}>
+                    <motion.div layout>new things and build awesome</motion.div>
+                    <div className="overflow-hidden">
                       {options[selecteOption]}
-                    </AnimatePresence>
-                  </div>
-                </div>
+                    </div>
+                  </AnimatePresence>
+                </motion.div>
               </Subtitle>
             </div>
 
@@ -106,7 +123,6 @@ export function Option({
 }) {
   return (
     <motion.p
-      key={children as string}
       className={cx("text-start font-bold", className)}
       initial={{ y: 50 }}
       animate={{ y: 0 }}
