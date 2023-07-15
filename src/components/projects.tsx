@@ -3,24 +3,28 @@ import RoundedItem from "@/components/rounded-item";
 import { Subtitle } from "@/components/subtitle";
 import { Title } from "@/components/title";
 import Button from "@/components/ui/button";
+import { generateCols } from "@/lib/utils";
 import { Project } from "@/types";
 import Image from "next/image";
+import Link from "next/link";
+import { useMemo } from "react";
 
 export function Projects({ projects }: { projects: Project[] }) {
   return (
-    <section className="py-24">
+    <section className="pt-32 pb-16" id="projects">
       <Container>
-        <div className="flex max-w-[950px] mx-auto flex-col gap-4">
+        <div className="flex justify-center items-center flex-col gap-4">
           <Title>Projects</Title>
-          <Subtitle className="mb-4">Awsome projects I have worked on</Subtitle>
+          <Subtitle className="mb-[3rem]">
+            Awsome projects I have worked on and am proud of
+          </Subtitle>
           <ProjectList projects={projects} />
           <div className="flex justify-center">
-            <Button
-              text="See All Projects"
-              intent="secondary"
-              size="sm"
-              rounded="full"
-            />
+            {/* <button className="glass-button">
+              Discover more <span className="font-semibold">projects</span>
+              <div className="absolute -inset-3 bg-white/20 border-[1px] border-white/50 rounded-full -z-10 hover:"></div>
+              <div className="absolute inset-0 bg-[#eeeeee] blur -z-20"></div>
+            </button> */}
           </div>
         </div>
       </Container>
@@ -29,43 +33,62 @@ export function Projects({ projects }: { projects: Project[] }) {
 }
 
 export async function ProjectList({ projects }: { projects: Project[] }) {
+  const firstCol = useMemo(() => generateCols(projects, 3, 0), [projects]);
+  const secondCol = useMemo(() => generateCols(projects, 3, 1), [projects]);
+  const thirdCol = useMemo(() => generateCols(projects, 3, 2), [projects]);
+
+  const matrix = [firstCol, secondCol, thirdCol];
+
   return (
-    <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 px-5">
-      {projects.map((project) => (
-        <ProjectItem project={project} key={project.id} />
+    <div className="relative flex gap-5 h-[40rem] overflow-hidden mb-10 bg-project-background">
+      {matrix.map((col, index) => (
+        <div className="flex flex-1 flex-col space-y-5" key={index}>
+          {col.map((project) => (
+            <ProjectItem project={project} key={project.id} />
+          ))}
+        </div>
       ))}
+
+      <div className="absolute bottom-0 left-0 right-0 h-[10rem] bg-gradient-to-t from-[#eeeeee]"></div>
     </div>
   );
 }
 
 export function ProjectItem({ project }: { project: Project }) {
   return (
-    <div className="flex flex-1 border group border-transparent hover:border-gray-300 rounded-md min-h-[20rem] overflow-hidden cursor-pointer">
-      <div className="flex flex-col w-full">
-        <div className="flex items-end px-5 pt-5">
-          <Image
-            src={project.image}
-            alt={project.name}
-            width={50}
-            height={50}
-            className="rounded-2xl border-[1px] border-gray-300"
-          />
-        </div>
-        <div className="flex flex-col p-5">
-          <div className="flex space-x-2 mb-2 items-baseline">
-            <h5 className="text-lg font-semibold">{project.name}</h5>
-            {/*  <p className="text-sm bg-zinc-200 text-zinc-700 px-2 py-1 rounded-md font-semibold">
-                  {project.date}
-                </p> */}
+    <Link href={`#`}>
+      <div
+        className="relative flex flex-1 border border-neutral-300 group rounded-2xl h-full]
+      overflow-hidden cursor-pointer hover:bg-neutral-100 transition-all duration-400 scale-[98%] hover:scale-100
+     bg-project"
+      >
+        <div className="flex  w-full p-7 gap-5">
+          <div className="flex shrink-0 items-start self-start">
+            <Image
+              src={project.image}
+              alt={project.name}
+              width={35}
+              height={35}
+              className="rounded-md"
+            />
           </div>
-          <p className="text-sm mb-7 text-gray-600">{project.description}</p>
-          <div className="flex gap-2 flex-wrap">
-            {project.tech.map((tech) => (
-              <RoundedItem>{tech}</RoundedItem>
-            ))}
+          <div className="flex flex-col">
+            <div className="flex space-x-2 mb-2 items-baseline">
+              <h5 className="text-xl font-semibold text-neutral-900">
+                {project.name}
+              </h5>
+            </div>
+            <p className="text-sm mb-7 text-neutral-600">
+              {project.description}
+            </p>
+            <div className="flex gap-2 flex-wrap">
+              {project.tech.map((tech) => (
+                <RoundedItem key={tech}>{tech}</RoundedItem>
+              ))}
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
