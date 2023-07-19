@@ -28,16 +28,30 @@ export function Hero() {
 
   const intervalRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  useEffect(() => {
-    clearInterval(intervalRef.current!);
-
-    const handleInterval = () => {
+  const interval = () => {
+    intervalRef.current = setTimeout(() => {
       setSelectedOption((prevOption) => (prevOption + 1) % options.length);
+      interval();
+    }, 1000 * 4);
+  };
+
+  useEffect(() => {
+    const handleVisibiltyChange = () => {
+      if (document.hidden) {
+        clearInterval(intervalRef.current!);
+      } else {
+        interval();
+      }
     };
 
-    intervalRef.current = setInterval(handleInterval, 1000 * 4);
+    interval();
 
-    return () => clearInterval(intervalRef.current!);
+    document.addEventListener("visibilitychange", handleVisibiltyChange);
+
+    return () => {
+      document.removeEventListener("visibilitychange", handleVisibiltyChange);
+      clearInterval(intervalRef.current!);
+    };
   }, []);
 
   return (
@@ -69,12 +83,12 @@ export function Hero() {
               <Subtitle className="space-y-1">
                 <div>I&apos;m a passionate developer who loves to learn</div>
                 <div className="flex items-center justify-center space-x-2">
-                  <motion.div layout>new things and build awesome</motion.div>
-                  <div className="overflow-hidden">
-                    <AnimatePresence mode="wait" initial={false}>
+                  <AnimatePresence mode="wait" initial={false}>
+                    <motion.div layout>new things and build awesome</motion.div>
+                    <div className="overflow-hidden">
                       {options[selecteOption]}
-                    </AnimatePresence>
-                  </div>
+                    </div>
+                  </AnimatePresence>
                 </div>
               </Subtitle>
             </div>
