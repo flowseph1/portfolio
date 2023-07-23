@@ -8,20 +8,7 @@ import { cx } from "class-variance-authority";
 import { AnimatePresence, motion } from "framer-motion";
 import { ReactNode, useEffect, useRef, useState } from "react";
 
-const options = [
-  <Option className="shadow-emerald-500" key={"project"}>
-    projects
-  </Option>,
-  <Option className="shadow-pink-500" key={"ideas"}>
-    ideas
-  </Option>,
-  <Option className="shadow-blue-500" key={"applications"}>
-    applications
-  </Option>,
-  <Option className="shadow-red-500" key={"solutions"}>
-    solutions
-  </Option>,
-];
+const options = ["projects", "ideas", "applications", "solutions"];
 
 export function Hero() {
   const [selecteOption, setSelectedOption] = useState(0);
@@ -32,7 +19,7 @@ export function Hero() {
     intervalRef.current = setTimeout(() => {
       setSelectedOption((prevOption) => (prevOption + 1) % options.length);
       interval();
-    }, 1000 * 4);
+    }, 1000 * 3);
   };
 
   useEffect(() => {
@@ -83,12 +70,14 @@ export function Hero() {
               <Subtitle className="space-y-1">
                 <div>I&apos;m a passionate developer who loves to learn</div>
                 <div className="flex items-center justify-center space-x-2">
-                  <AnimatePresence mode="wait" initial={false}>
-                    <motion.div layout>new things and build awesome</motion.div>
-                    <div className="overflow-hidden">
-                      {options[selecteOption]}
-                    </div>
-                  </AnimatePresence>
+                  <motion.div layout>new things and build awesome</motion.div>
+                  <div className="overflow-hidden">
+                    <AnimatePresence mode="wait" initial={false}>
+                      <Option key={options[selecteOption]}>
+                        {options[selecteOption]}
+                      </Option>
+                    </AnimatePresence>
+                  </div>
                 </div>
               </Subtitle>
             </div>
@@ -120,7 +109,7 @@ export function Option({
 }) {
   return (
     <motion.p
-      key={children as string}
+      layout
       className={cx("text-start font-bold", className)}
       initial={{ y: 50 }}
       animate={{ y: 0 }}
