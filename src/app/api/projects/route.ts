@@ -1,7 +1,7 @@
 import { getProjects } from "@/lib/queries";
 import { NextResponse } from "next/server";
 
-export async function GET(res: NextResponse) {
+export async function GET() {
   try {
     const projects = await getProjects();
 
@@ -11,7 +11,6 @@ export async function GET(res: NextResponse) {
   } catch (error) {
     return NextResponse.json({
       error: {
-        code: res.status,
         message: error,
       },
     });

@@ -2,31 +2,44 @@ import { Experience } from "@/components/experience";
 import { Hero } from "@/components/hero";
 import { Projects } from "@/components/projects";
 import { TechStack } from "@/components/tech-stack";
-import { dashboardData } from "@/data/dashboard";
+import { getDomain } from "@/lib/utils";
 import { ApiResponse, ExperienceData, ProjectData } from "@/types";
-import { Dashboard } from "@/types/dashboard";
 
 export default async function Home() {
-  const res = await fetch("http://localhost:3000/api/technologies", {
+  const domain = getDomain();
+
+  const res = await fetch(`${domain}/api/technologies`, {
     method: "GET",
     next: {
       revalidate: 10,
     },
   });
 
-  const res2 = await fetch("http://localhost:3000/api/projects", {
+  const res2 = await fetch(`${domain}/api/projects`, {
     method: "GET",
     next: {
       revalidate: 10,
     },
   });
 
-  const res3 = await fetch("http://localhost:3000/api/experiences", {
+  const res3 = await fetch(`${domain}/api/experiences`, {
     method: "GET",
     next: {
       revalidate: 10,
     },
   });
+
+  if (res.headers.get("Content-Type") !== "application/json") {
+    return null;
+  }
+
+  if (res2.headers.get("Content-Type") !== "application/json") {
+    return null;
+  }
+
+  if (res3.headers.get("Content-Type") !== "application/json") {
+    return null;
+  }
 
   const technologies = await res.json();
 
