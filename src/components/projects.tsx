@@ -2,14 +2,13 @@ import { Container } from "@/components/container";
 import RoundedItem from "@/components/rounded-item";
 import { Subtitle } from "@/components/subtitle";
 import { Title } from "@/components/title";
-import Button from "@/components/ui/button";
 import { generateCols } from "@/lib/utils";
-import { Project } from "@/types";
+import { ProjectData } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
 import { useMemo } from "react";
 
-export function Projects({ projects }: { projects: Project[] }) {
+export function Projects({ projects }: { projects: ProjectData[] }) {
   return (
     <section className="pt-32 pb-16" id="projects">
       <Container>
@@ -19,12 +18,11 @@ export function Projects({ projects }: { projects: Project[] }) {
             Awsome projects I have worked on and am proud of
           </Subtitle>
           <ProjectList projects={projects} />
-          <div className="flex justify-center">
-            {/* <button className="glass-button">
+          <div className="flex justify-center mt-5">
+            <button className="glass-button hover:shadow-md transition-all ">
               Discover more <span className="font-semibold">projects</span>
-              <div className="absolute -inset-3 bg-white/20 border-[1px] border-white/50 rounded-full -z-10 hover:"></div>
-              <div className="absolute inset-0 bg-[#eeeeee] blur -z-20"></div>
-            </button> */}
+              {/* <div className="absolute -inset-3 bg-white/20 border-[1px] border-white/50 rounded-full -z-10 hover:"></div> */}
+            </button>
           </div>
         </div>
       </Container>
@@ -32,10 +30,12 @@ export function Projects({ projects }: { projects: Project[] }) {
   );
 }
 
-export async function ProjectList({ projects }: { projects: Project[] }) {
+export async function ProjectList({ projects }: { projects: ProjectData[] }) {
   const firstCol = useMemo(() => generateCols(projects, 3, 0), [projects]);
   const secondCol = useMemo(() => generateCols(projects, 3, 1), [projects]);
   const thirdCol = useMemo(() => generateCols(projects, 3, 2), [projects]);
+
+  console.log("projects.tsx -> 39", projects);
 
   const matrix = [firstCol, secondCol, thirdCol];
 
@@ -54,7 +54,7 @@ export async function ProjectList({ projects }: { projects: Project[] }) {
   );
 }
 
-export function ProjectItem({ project }: { project: Project }) {
+export function ProjectItem({ project }: { project: ProjectData }) {
   return (
     <Link href={`#`}>
       <div
@@ -82,7 +82,7 @@ export function ProjectItem({ project }: { project: Project }) {
               {project.description}
             </p>
             <div className="flex gap-2 flex-wrap">
-              {project.tech.map((tech) => (
+              {project.technologies.map((tech) => (
                 <RoundedItem key={tech}>{tech}</RoundedItem>
               ))}
             </div>

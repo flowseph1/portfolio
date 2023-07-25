@@ -2,10 +2,11 @@ import { Container } from "@/components/container";
 import RoundedItem from "@/components/rounded-item";
 import { Subtitle } from "@/components/subtitle";
 import { Title } from "@/components/title";
-import { Experience, Experience as IExperience } from "@/types";
+import { formatDate, getYear } from "@/lib/utils";
+import { ExperienceData } from "@/types";
 import React from "react";
 
-export function Experience({ experience }: { experience: IExperience[] }) {
+export function Experience({ experience }: { experience: ExperienceData[] }) {
   return (
     <section className="flex flex-col pt-32 pb-16" id="experience">
       <Container>
@@ -19,7 +20,7 @@ export function Experience({ experience }: { experience: IExperience[] }) {
   );
 }
 
-export function Timeline({ experience }: { experience: IExperience[] }) {
+export function Timeline({ experience }: { experience: ExperienceData[] }) {
   return (
     <div className="">
       <div className="flex mb-1 h-20">
@@ -33,7 +34,8 @@ export function Timeline({ experience }: { experience: IExperience[] }) {
           <div className=" flex w-[350px] -mt-2 mr-3 justify-end ">
             <div className="relative glass-button py-1 h-fit mr-1">
               <p className="text-neutral-500 text-right text-sm">
-                {item.dateStart} - {item.dateEnd}
+                {getYear(item.dateStart!)}{" "}
+                {item.dateEnd ? ` - ${getYear(item.dateEnd)}` : "- current"}
               </p>
 
               {/* <div
@@ -63,11 +65,13 @@ export function Timeline({ experience }: { experience: IExperience[] }) {
   );
 }
 
-export function ExperienceItem({ item }: { item: Experience }) {
+export function ExperienceItem({ item }: { item: ExperienceData }) {
   return (
     <div className="max-w-[500px] px-5 mb-20 rounded-lg -mt-2">
       <div className="mb-5">
-        <p className="text-xl text-neutral-800 font-semibold">{item.company}</p>
+        <p className="text-xl text-neutral-800 font-semibold">
+          {item.companyName}
+        </p>
         <p className="text-neutral-600 mb-3">{item.position}</p>
         <p className="text-neutral-500 text-sm whitespace-break-spaces">
           {item.description}

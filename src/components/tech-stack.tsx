@@ -3,16 +3,18 @@
 import { Container } from "@/components/container";
 import { Subtitle } from "@/components/subtitle";
 import { Title } from "@/components/title";
-import { Tech } from "@/types";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { Techonologie } from "@/lib/schema";
 
 const ANIMATION_DURATION = 45;
 
-export function TechStack({ technologies }: { technologies: Tech[] }) {
-  const firstRow = technologies.slice(0, 4);
-  const secondRow = technologies.slice(4, 8);
-  const thirdRow = technologies.slice(8);
+export function TechStack({ technologies }: { technologies: Techonologie[] }) {
+  const factor = Math.round(technologies.length / 3);
+
+  const firstRow = technologies.slice(0, factor);
+  const secondRow = technologies.slice(factor, factor * 2);
+  const thirdRow = technologies.slice(factor * 2);
 
   return (
     <section className="flex pt-32 pb-16 space-y-5">
@@ -43,15 +45,15 @@ export function TechStack({ technologies }: { technologies: Tech[] }) {
   );
 }
 
-export function Tech({ tech }: { tech: Tech }) {
+export function Tech({ tech }: { tech: Techonologie }) {
   return (
     <div className="flex shrink-0 items-center justify-center px-5 py-4 border-[1px] border-neutral-300 rounded-full">
       <div className="mr-5">
         <Image
           src={tech.logo}
           alt={tech.name}
-          width={tech.width}
-          height={tech.height}
+          width={tech.width ?? 30}
+          height={tech.height ?? 30}
         />
       </div>
       <div>
@@ -61,7 +63,7 @@ export function Tech({ tech }: { tech: Tech }) {
   );
 }
 
-export function AnimatedRow({ techs }: { techs: Tech[] }) {
+export function AnimatedRow({ techs }: { techs: Techonologie[] }) {
   return (
     <div className="flex" key={techs[0].name}>
       <motion.div

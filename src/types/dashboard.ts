@@ -1,7 +1,7 @@
-import { Experience, Project, Tech } from "@/types";
+import { Experience, Project, Techonologie } from "@/lib/schema";
 
 export type Dashboard = {
   projects: Project[];
-  technologies: Tech[];
+  technologies: Techonologie[];
   experience: Experience[];
 };

@@ -1,6 +1,6 @@
 import { Dashboard } from "@/types/dashboard";
 
-export const dashboardData: Dashboard = {
+export const dashboardData = {
   projects: [
     {
       name: "BANHCAFE Mobile App",
@@ -9,21 +9,11 @@ export const dashboardData: Dashboard = {
       image: "/banhcafe-mobileApp.webp",
       date: "2023",
       github: "https://github.com/project-1",
-      category: "Web Development",
-      content: "Content 1",
       href: "/project-1",
       tags: ["Web Development", "React"],
-      id: 1,
       live: "https://project-1.com",
       slug: "banhcafe-mobile-app",
-      tech: [
-        "JavaScript",
-        "React Native",
-        "Expo",
-        "Styled Components",
-        "Redux",
-        "React Hook Form",
-      ],
+      categoryId: 1,
     },
     {
       name: "Token Digital",
@@ -32,14 +22,11 @@ export const dashboardData: Dashboard = {
       image: "/banhcafe-tokenDigital.webp",
       date: "2021",
       github: "https://github.com/project-1",
-      category: "Web Development",
-      content: "Content 1",
       href: "/project-1",
       tags: ["Web Development", "React"],
-      id: 2,
       live: "https://project-1.com",
       slug: "banhcafe-token-digital",
-      tech: ["TypeScript", "React Native", "Redux", "React Native Skia"],
+      categoryId: 2,
     },
     {
       name: "BANHCAFE Website",
@@ -48,14 +35,11 @@ export const dashboardData: Dashboard = {
       image: "/banhcafe-mobileApp.png",
       date: "2021",
       github: "https://github.com/project-1",
-      category: "Web Development",
-      content: "Content 1",
       href: "/project-1",
       tags: ["Web Development", "React"],
-      id: 3,
       live: "https://project-1.com",
       slug: "banhcafe-website",
-      tech: ["Next JS", "React JS", "TypeScript", "Framer Motion", "Zod"],
+      categoryId: 2,
     },
 
     {
@@ -65,14 +49,11 @@ export const dashboardData: Dashboard = {
       image: "/lucky-shoes.png",
       date: "2021",
       github: "https://github.com/project-1",
-      category: "Web Development",
-      content: "Content 1",
       href: "/project-1",
       tags: ["Web Development", "React"],
-      id: 4,
       live: "https://project-1.com",
       slug: "lucky-shoes",
-      tech: ["Next JS", "React", "JavaScript", "Redux", "React Hook Form"],
+      categoryId: 1,
     },
 
     {
@@ -82,14 +63,11 @@ export const dashboardData: Dashboard = {
       image: "/logo.svg",
       date: "2021",
       github: "https://github.com/project-1",
-      category: "Web Development",
-      content: "Content 1",
       href: "/project-1",
       tags: ["Web Development", "React"],
-      id: 6,
       live: "https://project-1.com",
       slug: "portfolio",
-      tech: ["Next JS", "React JS", "TypeScript", "Tailwind CSS", "Zod"],
+      categoryId: 1,
     },
 
     {
@@ -99,14 +77,11 @@ export const dashboardData: Dashboard = {
       image: "/password-generator.png",
       date: "2021",
       github: "https://github.com/project-1",
-      category: "Web Development",
-      content: "Content 1",
       href: "/project-1",
       tags: ["Web Development", "React"],
-      id: 5,
       live: "https://project-1.com",
       slug: "password-generator",
-      tech: ["React", "JavaScript"],
+      categoryId: 1,
     },
     {
       name: "Twitch Demo",
@@ -115,14 +90,11 @@ export const dashboardData: Dashboard = {
       image: "/twitch-demo.png",
       date: "2021",
       github: "https://github.com/project-1",
-      category: "Web Development",
-      content: "Content 1",
       href: "/project-1",
       tags: ["Web Development", "React"],
-      id: 2,
       live: "https://project-1.com",
       slug: "banhcafe-token-digital",
-      tech: ["TypeScript", "React Native", "Redux", "React Native Skia"],
+      categoryId: 1,
     },
     {
       name: "Meme creator",
@@ -131,14 +103,11 @@ export const dashboardData: Dashboard = {
       image: "/meme-creator.png",
       date: "2021",
       github: "https://github.com/project-1",
-      category: "Web Development",
-      content: "Content 1",
       href: "/project-1",
       tags: ["Web Development", "React"],
-      id: 3,
       live: "https://project-1.com",
       slug: "banhcafe-website",
-      tech: ["Next JS", "React JS", "TypeScript", "Framer Motion", "Zod"],
+      categoryId: 1,
     },
     {
       name: "Note taker",
@@ -147,14 +116,11 @@ export const dashboardData: Dashboard = {
       image: "/note-taker.png",
       date: "2021",
       github: "https://github.com/project-1",
-      category: "Web Development",
-      content: "Content 1",
       href: "/project-1",
       tags: ["Web Development", "React"],
-      id: 6,
       live: "https://project-1.com",
       slug: "portfolio",
-      tech: ["Next JS", "React JS", "TypeScript", "Tailwind CSS", "Zod"],
+      categoryId: 1,
     },
   ],
 
@@ -162,7 +128,6 @@ export const dashboardData: Dashboard = {
     {
       name: "JavaScript",
       logo: "/javascript.svg",
-      id: 6,
       width: 30,
       height: 30,
     },
@@ -170,7 +135,6 @@ export const dashboardData: Dashboard = {
     {
       name: "TypeScript",
       logo: "/typescript.svg",
-      id: 7,
       width: 30,
       height: 30,
     },
@@ -178,14 +142,12 @@ export const dashboardData: Dashboard = {
     {
       name: "React",
       logo: "/react.svg",
-      id: 1,
       width: 30,
       height: 30,
     },
     {
       name: "React Native",
       logo: "/react.svg",
-      id: 1,
       width: 30,
       height: 30,
     },
@@ -193,7 +155,6 @@ export const dashboardData: Dashboard = {
     {
       name: "Next JS",
       logo: "/next-js.svg",
-      id: 3,
       width: 30,
       height: 30,
     },
@@ -201,23 +162,13 @@ export const dashboardData: Dashboard = {
     {
       name: "Expo",
       logo: "/expo.svg",
-      id: 1,
       width: 30,
       height: 30,
     },
 
-    /* {
-      name: "React Native",
-      logo: "/react-native.svg",
-      id: 2,
-      width: 40,
-      height: 40,
-    }, */
-
     {
       name: "Redux",
       logo: "/redux.svg",
-      id: 5,
       width: 30,
       height: 30,
     },
@@ -225,7 +176,6 @@ export const dashboardData: Dashboard = {
     {
       name: "Tailwind CSS",
       logo: "/tailwind-css.svg",
-      id: 4,
       width: 30,
       height: 30,
     },
@@ -233,7 +183,6 @@ export const dashboardData: Dashboard = {
     {
       name: "Styled Components",
       logo: "/styled-components.svg",
-      id: 4,
       width: 50,
       height: 50,
     },
@@ -241,7 +190,6 @@ export const dashboardData: Dashboard = {
     {
       name: "Prisma",
       logo: "/prisma.svg",
-      id: 8,
       width: 22,
       height: 30,
     },
@@ -249,7 +197,6 @@ export const dashboardData: Dashboard = {
     {
       name: "PlanetScale",
       logo: "/planetscale.svg",
-      id: 8,
       width: 30,
       height: 30,
     },
@@ -263,10 +210,8 @@ export const dashboardData: Dashboard = {
       position: "Front End Developer",
       description:
         "I work on several exciting projects that greatly enhanced the digital presence and customer experience. As the lead developer, I played a pivotal role in creating the bank's mobile app, a groundbreaking addition to their digital ecosystem.",
-      id: 1,
       logo: "/banhcafe-mobileApp.png",
       tags: ["Web Development", "React"],
-      tech: ["React", "JavaScript"],
       href: "/project-1",
       slug: "project-1",
       projects: [
@@ -283,10 +228,8 @@ export const dashboardData: Dashboard = {
       position: "Freelance - Full Stack Developer",
       description:
         "As a freelance developer, I had the exciting opportunity to collaborate with Lucky Shoes, an online sneaker store, on a transformative project. My involvement encompassed the complete development of an exceptional e-commerce website, where I took charge of every aspect, including UI/UX design and all related functionalities.",
-      id: 2,
       logo: "/banhcafe-mobileApp.png",
       tags: ["Web Development", "React"],
-      tech: ["React", "JavaScript"],
       href: "/project-1",
       slug: "project-1",
       projects: ["Lucky Shoes"],
@@ -299,10 +242,8 @@ export const dashboardData: Dashboard = {
       position: "Front End Developer",
       description:
         "E-commerce website for a software company that specializes in selling various software products. The goal of the website is to provide a user-friendly platform where customers can browse software products directly from the company.",
-      id: 3,
       logo: "/banhcafe-mobileApp.png",
       tags: ["Web Development", "React"],
-      tech: ["React", "JavaScript"],
       href: "/project-1",
       slug: "project-1",
     },
