@@ -35,8 +35,6 @@ export async function ProjectList({ projects }: { projects: ProjectData[] }) {
   const secondCol = useMemo(() => generateCols(projects, 3, 1), [projects]);
   const thirdCol = useMemo(() => generateCols(projects, 3, 2), [projects]);
 
-  console.log("projects.tsx -> 39", projects);
-
   const matrix = [firstCol, secondCol, thirdCol];
 
   return (

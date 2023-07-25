@@ -9,7 +9,6 @@ export async function GET(res: NextResponse) {
       data: projects,
     });
   } catch (error) {
-    console.log(error);
     return NextResponse.json({
       error: {
         code: res.status,
