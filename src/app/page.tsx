@@ -5,47 +5,60 @@ import { TechStack } from "@/components/tech-stack";
 import { getDomain } from "@/lib/utils";
 import { ApiResponse, ExperienceData, ProjectData } from "@/types";
 
-export default async function Home() {
+async function getTechnologies() {
   const domain = getDomain();
 
   const res = await fetch(`${domain}/api/technologies`, {
     method: "GET",
-    next: {
-      revalidate: 10,
-    },
   });
 
-  const res2 = await fetch(`${domain}/api/projects`, {
+  if (!res.ok) {
+    throw new Error("Error fetching technologies");
+  }
+
+  return res.json();
+}
+
+async function getProjects() {
+  const domain = getDomain();
+
+  const res = await fetch(`${domain}/api/projects`, {
     method: "GET",
-    next: {
-      revalidate: 10,
-    },
   });
 
-  const res3 = await fetch(`${domain}/api/experiences`, {
+  if (!res.ok) {
+    throw new Error("Error fetching technologies");
+  }
+
+  return res.json();
+}
+
+async function getExperiences() {
+  const domain = getDomain();
+
+  const res = await fetch(`${domain}/api/experiences`, {
     method: "GET",
-    next: {
-      revalidate: 10,
-    },
   });
 
-  if (res.headers.get("Content-Type") !== "application/json") {
-    return null;
+  if (!res.ok) {
+    throw new Error("Error fetching technologies");
   }
 
-  if (res2.headers.get("Content-Type") !== "application/json") {
-    return null;
-  }
+  return res.json();
+}
 
-  if (res3.headers.get("Content-Type") !== "application/json") {
-    return null;
-  }
+export default async function Home() {
+  const technologiesData = await getTechnologies();
 
-  const technologies = await res.json();
+  const projectsData = await getProjects();
 
-  const projects = (await res2.json()) as ApiResponse<ProjectData[]>;
+  const experiencesData = await getExperiences();
 
-  const experiences = (await res3.json()) as ApiResponse<ExperienceData[]>;
+  const [technologies, projects, experiences] = await Promise.all([
+    technologiesData,
+    projectsData,
+    experiencesData,
+  ]);
 
   return (
     <main>
