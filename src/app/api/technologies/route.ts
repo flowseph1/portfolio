@@ -1,4 +1,5 @@
-import { getTechnologies } from "@/lib/queries";
+import { db } from "@/lib/db";
+import { technologies } from "@/lib/schema";
 import { NextResponse } from "next/server";
 
 export async function GET() {
@@ -15,4 +16,8 @@ export async function GET() {
       },
     });
   }
+}
+
+async function getTechnologies() {
+  return await db.select().from(technologies);
 }
