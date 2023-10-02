@@ -90,7 +90,7 @@ export function Hero() {
               <Button
                 text="Download CV"
                 intent="outline"
-                href="https://www.linkedin.com/in/josemiguelacosta/"
+                href="download/jose-acosta-resume-v2.pdf"
               />
             </div>
           </div>

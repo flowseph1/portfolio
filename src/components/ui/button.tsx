@@ -4,6 +4,7 @@ import { cva } from "class-variance-authority";
 
 interface ButtonProps {
   text: string;
+  target?: string;
   intent?: "primary" | "secondary" | "outline";
   size?: "sm" | "md" | "lg";
   rounded?: "sm" | "md" | "lg" | "full";
@@ -11,7 +12,15 @@ interface ButtonProps {
   href?: string;
 }
 
-function Button({ text, intent, size, rounded, onClick, href }: ButtonProps) {
+function Button({
+  text,
+  intent,
+  size,
+  rounded,
+  onClick,
+  href,
+  target = "_blank",
+}: ButtonProps) {
   const button = cva("button cursor-pointer transition-all duration-300", {
     variants: {
       intent: {
@@ -43,7 +52,7 @@ function Button({ text, intent, size, rounded, onClick, href }: ButtonProps) {
     <button
       className={button({ intent, size, rounded })}
       onClick={() =>
-        onClick ? onClick() : href ? window.open(href, "_ blank") : {}
+        onClick ? onClick() : href ? window.open(href, target) : {}
       }
     >
       {text}
