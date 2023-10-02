@@ -1,8 +1,20 @@
+import { cx } from "class-variance-authority";
 import { ReactNode } from "react";
 
-export default function RoundedItem({ children }: { children: ReactNode }) {
+export default function RoundedItem({
+  children,
+  className,
+}: {
+  children: ReactNode;
+  className?: string;
+}) {
   return (
-    <div className="py-1 px-3 border-[1px] border-neutral-300 rounded-full text-xs text-neutral-600 transition-all duration-300">
+    <div
+      className={cx(
+        "py-1 px-3 border-[1px] border-neutral-300 rounded-full text-xs text-neutral-600 transition-all duration-300",
+        className
+      )}
+    >
       {children}
     </div>
   );
