@@ -1,3 +1,5 @@
+"use client";
+
 import { Container } from "@/components/container";
 import RoundedItem from "@/components/rounded-item";
 import { Subtitle } from "@/components/subtitle";
@@ -6,9 +8,12 @@ import { generateCols } from "@/lib/utils";
 import { ProjectData } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useMemo } from "react";
+import { AiFillGithub } from "react-icons/ai";
 
 export function Projects({ projects }: { projects: ProjectData[] }) {
+  const router = useRouter();
   return (
     <section className="pt-32 pb-16" id="projects">
       <Container>
@@ -19,10 +24,16 @@ export function Projects({ projects }: { projects: ProjectData[] }) {
           </Subtitle>
           <ProjectList projects={projects} />
           <div className="flex justify-center mt-5">
-            <button className="glass-button hover:shadow-md transition-all ">
-              Discover more <span className="font-semibold">projects</span>
-              {/* <div className="absolute -inset-3 bg-white/20 border-[1px] border-white/50 rounded-full -z-10 hover:"></div> */}
-            </button>
+            <Link href={"https://github.com/flowseph1"} target="_blank">
+              <button className="glass-button hover:shadow-md transition-all flex gap-2">
+                Discover more at
+                <p className="flex gap-1 items-center">
+                  <AiFillGithub />{" "}
+                  <span className="font-semibold">flowseph1</span>
+                </p>
+                {/* <div className="absolute -inset-3 bg-white/20 border-[1px] border-white/50 rounded-full -z-10 hover:"></div> */}
+              </button>
+            </Link>
           </div>
         </div>
       </Container>
@@ -30,7 +41,7 @@ export function Projects({ projects }: { projects: ProjectData[] }) {
   );
 }
 
-export async function ProjectList({ projects }: { projects: ProjectData[] }) {
+export function ProjectList({ projects }: { projects: ProjectData[] }) {
   const firstCol = useMemo(() => generateCols(projects, 3, 0), [projects]);
   const secondCol = useMemo(() => generateCols(projects, 3, 1), [projects]);
   const thirdCol = useMemo(() => generateCols(projects, 3, 2), [projects]);
