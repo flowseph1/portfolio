@@ -6,47 +6,41 @@ import { Title } from "@/components/title";
 import Button from "@/components/ui/button";
 import { cx } from "class-variance-authority";
 import { AnimatePresence, motion } from "framer-motion";
-import { ReactNode, useEffect, useRef, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 
-const options = ["projects", "ideas", "applications", "solutions"];
+const OPTIONS = [
+  { text: "Experiences", gradient: "from-blue-500 to-purple-600" },
+  { text: "Projects", gradient: "from-pink-500 via-red-500 to-yellow-500" },
+  {
+    text: "Applications",
+    gradient: "from-orange-600 to-rose-600",
+  },
+  { text: "Solutions", gradient: "from-fuchsia-600 to-pink-600" },
+];
+
+const WORDS_PER_SECONDS = 1000 * 5;
 
 export function Hero() {
-  const [selecteOption, setSelectedOption] = useState(0);
-
-  const intervalRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-
-  const interval = () => {
-    intervalRef.current = setTimeout(() => {
-      setSelectedOption((prevOption) => (prevOption + 1) % options.length);
-      interval();
-    }, 1000 * 3);
-  };
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
-    const handleVisibiltyChange = () => {
-      if (document.hidden) {
-        clearInterval(intervalRef.current!);
-      } else {
-        interval();
-      }
-    };
-
-    interval();
-
-    document.addEventListener("visibilitychange", handleVisibiltyChange);
+    const unsubscribe = setInterval(() => {
+      setCurrentIndex((prevIndex) =>
+        prevIndex === OPTIONS.length - 1 ? 0 : prevIndex + 1
+      );
+    }, WORDS_PER_SECONDS);
 
     return () => {
-      document.removeEventListener("visibilitychange", handleVisibiltyChange);
-      clearInterval(intervalRef.current!);
+      clearInterval(unsubscribe);
     };
   }, []);
 
   return (
-    <section className="relative flex flex-col items-center justify-center pt-32 pb-16 z-10">
+    <section className="relative flex flex-col items-center justify-center py-32 z-10">
       {/* Hero background */}
       <div className="absolute inset-0 -z-20 bg-hero"></div>
       <Container>
-        <div className=" flex flex-col justify-center items-center z-10">
+        <div className="flex flex-col justify-center items-center z-10">
           {/* Image */}
 
           {/* <div className="relative z-10 rounded-full mb-5">
@@ -60,26 +54,84 @@ export function Hero() {
             />
           </div> */}
 
-          <p className="glass-button">
+          <p className="glass-button mb-5">
             Hi, my name is <span className="font-semibold">Jose Acosta</span> 👋
           </p>
 
-          <div className="flex flex-col items-center justify-center gap-6">
-            <Title>Front End Developer</Title>
+          <div className="flex flex-col items-center justify-center gap-6 px-5">
+            <Title>Code with Purpose, Design with Passion</Title>
             <div className="mb-5">
-              <Subtitle className="space-y-1">
-                <div>I&apos;m a passionate developer who loves to learn</div>
-                <div className="flex items-center justify-center space-x-2">
-                  <motion.div layout>new things and build awesome</motion.div>
-                  <div className="overflow-hidden">
-                    <AnimatePresence mode="wait" initial={false}>
-                      <Option key={options[selecteOption]}>
-                        {options[selecteOption]}
-                      </Option>
-                    </AnimatePresence>
+              <AnimatePresence initial={false}>
+                <Subtitle className="hidden md:flex gap-2 max-w-xl">
+                  <motion.p layout>Transforming Ideas into Intuitive</motion.p>
+                  <motion.p
+                    key={OPTIONS[currentIndex].text}
+                    className={cx(
+                      "font-bold bg-clip-text bg-gradient-to-r text-transparent animate-hero-text bg-300%",
+                      OPTIONS[currentIndex].gradient
+                    )}
+                    initial={{
+                      opacity: 0,
+                    }}
+                    animate={{
+                      opacity: 1,
+                      transition: {
+                        duration: 0.5,
+                        delay: 0.3,
+                        ease: "easeInOut",
+                      },
+                    }}
+                    exit={{
+                      opacity: 0,
+                      transition: {
+                        duration: 0.5,
+                        delay: 0.5,
+                        ease: "easeInOut",
+                      },
+                    }}
+                  >
+                    {OPTIONS[currentIndex].text}
+                  </motion.p>
+                </Subtitle>
+              </AnimatePresence>
+
+              <AnimatePresence initial={false}>
+                <Subtitle className="flex flex-col md:hidden max-w-xl">
+                  <p>Transforming Ideas into</p>
+                  <div className="flex gap-2 justify-center items-center">
+                    <motion.p layout>Intuitive</motion.p>
+
+                    <motion.p
+                      key={OPTIONS[currentIndex].text}
+                      className={cx(
+                        "font-bold bg-clip-text bg-gradient-to-r text-transparent animate-hero-text bg-300%",
+                        OPTIONS[currentIndex].gradient
+                      )}
+                      initial={{
+                        opacity: 0,
+                      }}
+                      animate={{
+                        opacity: 1,
+                        transition: {
+                          duration: 0.5,
+                          delay: 0.3,
+                          ease: "easeInOut",
+                        },
+                      }}
+                      exit={{
+                        opacity: 0,
+                        transition: {
+                          duration: 0.5,
+                          delay: 0.5,
+                          ease: "easeInOut",
+                        },
+                      }}
+                    >
+                      {OPTIONS[currentIndex].text}
+                    </motion.p>
                   </div>
-                </div>
-              </Subtitle>
+                </Subtitle>
+              </AnimatePresence>
             </div>
 
             <div className="flex gap-4">

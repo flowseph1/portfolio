@@ -3,11 +3,9 @@
 import { Container } from "@/components/container";
 import { Subtitle } from "@/components/subtitle";
 import { Title } from "@/components/title";
-import Image from "next/image";
-import { motion } from "framer-motion";
 import { Techonologie } from "@/lib/schema";
-
-const ANIMATION_DURATION = 45;
+import Image from "next/image";
+import { PiBrainBold } from "react-icons/pi";
 
 export function TechStack({ technologies }: { technologies: Techonologie[] }) {
   const factor = Math.round(technologies.length / 3);
@@ -17,13 +15,18 @@ export function TechStack({ technologies }: { technologies: Techonologie[] }) {
   const thirdRow = technologies.slice(factor * 2);
 
   return (
-    <section className="flex pt-32 pb-16 space-y-5">
+    <section className="flex py-32 space-y-5 ">
       {/* <p className="text-base text-zinc-500">Main Tech Stack</p> */}
+
       <Container>
         <div className="flex flex-col justify-center items-center gap-4">
+          <p className="glass-button self-center w-fit justify-center flex gap-2 items-center">
+            <PiBrainBold size={20} />
+            Technical Skills
+          </p>
           <Title>Tech Stack</Title>
           <Subtitle className="mb-7">
-            Some of the technologies I use to build my projects.
+            Essential technologies powering my coding ventures
           </Subtitle>
           <div className="relative mb-7">
             <div className="flex flex-col space-y-8 max-w-[1000px] mx-auto overflow-hidden">
@@ -47,17 +50,19 @@ export function TechStack({ technologies }: { technologies: Techonologie[] }) {
 
 export function Tech({ tech }: { tech: Techonologie }) {
   return (
-    <div className="flex shrink-0 items-center justify-center px-5 py-4 border-[1px] border-neutral-300 rounded-full">
-      <div className="mr-5">
-        <Image
-          src={tech.logo}
-          alt={tech.name}
-          width={tech.width ?? 30}
-          height={tech.height ?? 30}
-        />
-      </div>
-      <div>
-        <h3 className="">{tech.name}</h3>
+    <div className="flex px-2">
+      <div className="flex shrink-0 items-center justify-center px-5 py-4 border-[0.8px] border-neutral-300/50 rounded-full">
+        <div className="mr-5">
+          <Image
+            src={tech.logo}
+            alt={tech.name}
+            width={tech.width ?? 30}
+            height={tech.height ?? 30}
+          />
+        </div>
+        <div>
+          <h3 className="">{tech.name}</h3>
+        </div>
       </div>
     </div>
   );
@@ -65,65 +70,18 @@ export function Tech({ tech }: { tech: Techonologie }) {
 
 export function AnimatedRow({ techs }: { techs: Techonologie[] }) {
   return (
-    <div className="flex" key={techs[0].name}>
-      <motion.div
-        className="flex flex-shrink-0 gap-x-5 pr-5"
-        initial={{
-          x: 0,
-        }}
-        animate={{
-          x: "-100%",
-        }}
-        transition={{
-          duration: ANIMATION_DURATION,
-          repeat: Infinity,
-          repeatType: "loop",
-          ease: "linear",
-        }}
-      >
+    <div className="flex flex-row" key={techs[0].name}>
+      <div className="flex flex-shrink-0 animate-tech-carousel">
         {techs.map((tech) => (
           <Tech key={tech.name + "first-row"} tech={tech} />
         ))}
-      </motion.div>
-      <motion.div
-        className="flex flex-shrink-0 gap-x-5 pr-5"
-        initial={{
-          x: 0,
-        }}
-        animate={{
-          x: "-100%",
-        }}
-        transition={{
-          duration: ANIMATION_DURATION,
-          repeat: Infinity,
-          repeatType: "loop",
-          ease: "linear",
-        }}
-      >
-        {techs.map((tech) => (
-          <Tech key={tech.name + "second-row"} tech={tech} />
-        ))}
-      </motion.div>
+      </div>
 
-      <motion.div
-        className="flex flex-shrink-0 gap-x-5 pr-5"
-        initial={{
-          x: 0,
-        }}
-        animate={{
-          x: "-100%",
-        }}
-        transition={{
-          duration: ANIMATION_DURATION,
-          repeat: Infinity,
-          repeatType: "loop",
-          ease: "linear",
-        }}
-      >
+      <div className="flex flex-shrink-0 animate-tech-carousel">
         {techs.map((tech) => (
-          <Tech key={tech.name + "third-row"} tech={tech} />
+          <Tech key={tech.name + "first-row"} tech={tech} />
         ))}
-      </motion.div>
+      </div>
     </div>
   );
 }

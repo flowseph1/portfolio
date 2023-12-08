@@ -16,6 +16,9 @@ export async function getTechnologies(): Promise<ApiResponse<Techonologie[]>> {
 export async function getProjects(): Promise<ApiResponse<ProjectData[]>> {
   const res = await fetch(`${process.env.URL}/api/projects`, {
     method: "GET",
+    next: {
+      revalidate: 10
+    }
   });
 
   if (!res.ok) {

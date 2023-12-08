@@ -1,18 +1,32 @@
+"use client";
+
 import { Container } from "@/components/container";
 import RoundedItem from "@/components/rounded-item";
 import { Subtitle } from "@/components/subtitle";
 import { Title } from "@/components/title";
-import { formatDate, getYear } from "@/lib/utils";
+import { getYear } from "@/lib/utils";
 import { ExperienceData } from "@/types";
-import React from "react";
+import Image from "next/image";
+import texture from "../../public/texture-7.png";
+import { useEffect } from "react";
 
 export function Experience({ experience }: { experience: ExperienceData[] }) {
   return (
-    <section className="flex flex-col pt-32 pb-16" id="experience">
+    <section className="relative flex flex-col pt-32 pb-16 z-0" id="experience">
+      {/* Background */}
+      <div className="absolute inset-0 -z-20 opacity-10">
+        <Image src={texture} alt="texture" fill />
+      </div>
+
+      <div className="absolute left-0 top-0 w-full -z-10 h-[20rem] bg-gradient-to-b from-[var(--background)] to-transparent blur-lg"></div>
+      <div className="absolute left-0 bottom-0 w-full -z-10 h-[20rem] bg-gradient-to-t from-[var(--background)] to-transparent blur-lg"></div>
+      <div className="absolute left-1/2 top-1/2 w-[40rem] h-[40rem] -z-10  bg-[var(--background)] rounded-full -translate-x-1/2 -translate-y-1/2 blur-lg"></div>
+      <div className="absolute left-0 top-0 w-[20rem] h-[20rem] -z-10  bg-[var(--background)] rounded-full  blur-lg"></div>
+
       <Container>
         <div className="flex justify-center items-center flex-col space-y-5">
-          <Title>Experience</Title>
-          <Subtitle>Companies I&apos;ve worked with</Subtitle>
+          <Title>Experience Timeline</Title>
+          <Subtitle>Delve into my experiences working for companies</Subtitle>
           <Timeline experience={experience} />
         </div>
       </Container>
@@ -21,6 +35,18 @@ export function Experience({ experience }: { experience: ExperienceData[] }) {
 }
 
 export function Timeline({ experience }: { experience: ExperienceData[] }) {
+  useEffect(() => {
+    const elements = document.querySelectorAll("#horizontal-line");
+
+    elements.forEach((element) => {
+      const delay = 0;
+
+      setTimeout(() => {
+        element.classList.add("before:animate-shootin-star");
+      }, delay * 1000);
+    });
+  }, []);
+
   return (
     <div className="">
       <div className="flex mb-1 h-20">
@@ -48,9 +74,14 @@ export function Timeline({ experience }: { experience: ExperienceData[] }) {
               /> */}
             </div>
           </div>
-          <div className="flex flex-col items-center mb-1">
+          <div
+            id="horizontal-line"
+            className="relative  flex flex-col items-center mb-1 before:w-[1.5px] before:absolute 
+            before:bottom-0 before:bg-gradient-to-t before:from-transparent before:to-zinc-800 before:opacity-0
+            before:h-12 before:content-['']"
+          >
             <span className="w-3 h-3 border-2 border-gray-300 rounded-full mb-1" />
-            <span className="w-[1px] flex-1 bg-gray-300" />
+            <span className="w-[1px] flex-1 bg-gray-300 " />
           </div>
           <ExperienceItem key={item.id} item={item} />
         </div>

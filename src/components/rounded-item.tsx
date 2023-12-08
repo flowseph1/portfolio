@@ -11,7 +11,7 @@ export default function RoundedItem({
   return (
     <div
       className={cx(
-        "py-1 px-3 border-[1px] border-neutral-300 rounded-full text-xs text-neutral-600 transition-all duration-300",
+        "py-1 px-3 border-[1px] border-neutral-300/70 rounded-full text-xs text-neutral-500 transition-all duration-300",
         className
       )}
     >

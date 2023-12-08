@@ -24,8 +24,6 @@ async function getProjects(): Promise<ApiResponse<ProjectData[]>> {
 export default async function ProjectsPage() {
   const projects = await getProjects();
 
-  console.log("page.tsx -> 27", projects);
-
   return (
     <div className="">
       <section className="py-20 ">

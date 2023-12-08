@@ -11,7 +11,7 @@ export function Header() {
   const route = useRouter();
 
   return (
-    <header className="flex-1 border-b-[1px] border-neutral-200 backdrop-blur-3xl bg-[#eeeeee50]">
+    <header className="flex-1">
       <Container>
         <div className="flex flex-1 justify-between items-center p-5">
           <div className="flex space-x-4 justify-center items-center">
@@ -21,7 +21,9 @@ export function Header() {
               className="cursor-pointer transition-colors"
               onClick={() => route.push("/")}
             />
-            <p className="font-bold text-neutral-700">JOSE ACOSTA</p>
+            <p className="hidden sm:block font-bold text-neutral-700">
+              JOSE ACOSTA
+            </p>
           </div>
           <div className="flex justify-center items-center space-x-6">
             <Link href={"#"}>
