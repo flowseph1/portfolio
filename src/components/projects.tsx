@@ -130,9 +130,10 @@ export function ProjectItem({ project }: { project: ProjectData }) {
               {project.short_description}
             </p>
             <div className="flex gap-2 flex-wrap">
-              {project.technologies.map((tech) => (
-                <RoundedItem key={tech}>{tech}</RoundedItem>
-              ))}
+              {project.technologies &&
+                project.technologies.map((tech) => (
+                  <RoundedItem key={tech}>{tech}</RoundedItem>
+                ))}
             </div>
           </div>
         </div>

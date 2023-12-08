@@ -1,41 +1,59 @@
-import { Techonologie } from "@/lib/schema";
-import { ApiResponse, ExperienceData, ProjectData } from "@/types";
+import {
+  Project,
+  Techonologie,
+  categories,
+  companies,
+  experiences,
+  experiencesProjects,
+  projects,
+  projectsTechnologies,
+  technologies,
+} from "@/lib/schema";
+import { eq, sql } from "drizzle-orm";
+import { db } from "./db";
+import { ProjectData } from "@/types";
 
-export async function getTechnologies(): Promise<ApiResponse<Techonologie[]>> {
-  const res = await fetch(`${process.env.URL}/api/technologies`, {
-    method: "GET",
-  });
-
-  if (!res.ok) {
-    throw new Error("Error fetching technologies");
-  }
-
-  return res.json();
+export async function getTechnologies() {
+  return await db.select().from(technologies);
 }
 
-export async function getProjects(): Promise<ApiResponse<ProjectData[]>> {
-  const res = await fetch(`${process.env.URL}/api/projects`, {
-    method: "GET",
-    next: {
-      revalidate: 10
-    }
-  });
+export async function getProjects() {
+  const { _, ...rest } = projects;
 
-  if (!res.ok) {
-    throw new Error("Error fetching technologies");
-  }
-
-  return res.json();
+  return await db
+    .select({
+      ...rest,
+      categoryName: categories.name,
+      companyName: companies.name,
+      technologies: sql<string[]>`array_agg(${technologies.name})`,
+    })
+    .from(projects)
+    .innerJoin(categories, eq(projects.categoryId, categories.id))
+    .innerJoin(companies, eq(projects.companyId, companies.id))
+    .innerJoin(
+      projectsTechnologies,
+      eq(projectsTechnologies.projectId, projects.id)
+    )
+    .innerJoin(technologies, eq(projectsTechnologies.techId, technologies.id))
+    .groupBy(projects.id, categories.id, companies.name)
+    .orderBy(projects.id);
 }
 
-export async function getExperiences(): Promise<ApiResponse<ExperienceData[]>> {
-  const res = await fetch(`${process.env.URL}/api/experiences`, {
-    method: "GET",
-  });
+export async function getExperiences() {
+  const { _, ...rest } = experiences;
 
-  if (!res.ok) {
-    throw new Error("Error fetching technologies");
-  }
-
-  return res.json();
+  return await db
+    .select({
+      ...rest,
+      companyName: companies.name,
+      projects: sql<string[]>`array_agg(${projects.name})`,
+    })
+    .from(experiences)
+    .innerJoin(companies, eq(experiences.companyId, companies.id))
+    .innerJoin(
+      experiencesProjects,
+      eq(experiencesProjects.experienceId, experiences.id)
+    )
+    .innerJoin(projects, eq(experiencesProjects.projectId, projects.id))
+    .groupBy(experiences.id, companies.name);
 }

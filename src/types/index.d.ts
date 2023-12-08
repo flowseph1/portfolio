@@ -12,7 +12,7 @@ export interface ProjectData extends Project {
 
 export interface ExperienceData extends Experience {
   companyName: string;
-  experiences: string[];
+  // experiences: string[];
 }
 
 export type ApiResponse<T> = {

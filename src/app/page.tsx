@@ -9,18 +9,18 @@ import {
 } from "@/lib/api-request";
 
 export default async function Home() {
-  const technologies = await getTechnologies();
-
-  const projects = await getProjects();
-
-  const experiences = await getExperiences();
+  const [experiences, projects, technologies] = await Promise.all([
+    getExperiences(),
+    getProjects(),
+    getTechnologies(),
+  ]);
 
   return (
     <main>
       <Hero />
-      <TechStack technologies={technologies.data} />
-      <Projects projects={projects.data} />
-      <Experience experience={experiences.data} />
+      <TechStack technologies={technologies} />
+      <Projects projects={projects} />
+      <Experience experience={experiences} />
     </main>
   );
 }

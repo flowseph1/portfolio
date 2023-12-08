@@ -39,6 +39,7 @@ export const projects = pgTable("projects", {
   short_description: text("short_description"),
   appStoreURL: text("app_store_url"),
   playStoreURL: text("play_store_url"),
+  technologies: text("technologies").array(),
   appGalleryURL: text("app_gallery_url"),
   live: varchar("live", { length: 255 }),
   link: text("link"),
