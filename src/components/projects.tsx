@@ -76,22 +76,26 @@ export function ProjectItem({ project }: { project: ProjectData }) {
       return project.link;
     }
 
-    let userAgent = window.navigator.userAgent.toLowerCase(),
-      macosPlatforms = /(macintosh|macintel|macppc|mac68k|macos)/i,
-      windowsPlatforms = /(win32|win64|windows|wince)/i,
-      iosPlatforms = /(iphone|ipad|ipod)/i,
-      os = null;
+    if (typeof window !== "undefined") {
+      // Client-side-only code
 
-    if (macosPlatforms.test(userAgent)) {
-      return project.appStoreURL;
-    } else if (iosPlatforms.test(userAgent)) {
-      return project.appStoreURL;
-    } else if (windowsPlatforms.test(userAgent)) {
-      return project.playStoreURL;
-    } else if (/android/.test(userAgent)) {
-      return project.playStoreURL;
-    } else if (!os && /linux/.test(userAgent)) {
-      return project.playStoreURL;
+      let userAgent = window.navigator.userAgent.toLowerCase(),
+        macosPlatforms = /(macintosh|macintel|macppc|mac68k|macos)/i,
+        windowsPlatforms = /(win32|win64|windows|wince)/i,
+        iosPlatforms = /(iphone|ipad|ipod)/i,
+        os = null;
+
+      if (macosPlatforms.test(userAgent)) {
+        return project.appStoreURL;
+      } else if (iosPlatforms.test(userAgent)) {
+        return project.appStoreURL;
+      } else if (windowsPlatforms.test(userAgent)) {
+        return project.playStoreURL;
+      } else if (/android/.test(userAgent)) {
+        return project.playStoreURL;
+      } else if (!os && /linux/.test(userAgent)) {
+        return project.playStoreURL;
+      }
     }
 
     return "";

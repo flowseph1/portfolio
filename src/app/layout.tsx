@@ -10,16 +10,12 @@ export const metadata = {
   description: "Jose Acosta's portfolio",
 };
 
-export default function RootLayout(props: {
-  children: React.ReactNode;
-  modal: React.ReactNode;
-}) {
+export default function RootLayout(props: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body className={`${inter.className} antialiased`} id="body">
         <Header />
         {props.children}
-        {props.modal}
         <Footer />
       </body>
     </html>
