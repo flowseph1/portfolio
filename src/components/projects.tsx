@@ -8,7 +8,7 @@ import { generateCols } from "@/lib/utils";
 import { ProjectData } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { AiFillGithub } from "react-icons/ai";
 import { FaLaptopCode } from "react-icons/fa";
 
@@ -71,34 +71,30 @@ export function ProjectList({ projects }: { projects: ProjectData[] }) {
 }
 
 export function ProjectItem({ project }: { project: ProjectData }) {
-  const href = useMemo(() => {
+  const [href, setHref] = useState("");
+
+  useEffect(() => {
     if (project.link) {
-      return project.link;
+      return setHref(project.link);
     }
 
-    if (typeof window !== "undefined") {
-      // Client-side-only code
+    let userAgent = window.navigator.userAgent.toLowerCase(),
+      macosPlatforms = /(macintosh|macintel|macppc|mac68k|macos)/i,
+      windowsPlatforms = /(win32|win64|windows|wince)/i,
+      iosPlatforms = /(iphone|ipad|ipod)/i,
+      os = null;
 
-      let userAgent = window.navigator.userAgent.toLowerCase(),
-        macosPlatforms = /(macintosh|macintel|macppc|mac68k|macos)/i,
-        windowsPlatforms = /(win32|win64|windows|wince)/i,
-        iosPlatforms = /(iphone|ipad|ipod)/i,
-        os = null;
-
-      if (macosPlatforms.test(userAgent)) {
-        return project.appStoreURL;
-      } else if (iosPlatforms.test(userAgent)) {
-        return project.appStoreURL;
-      } else if (windowsPlatforms.test(userAgent)) {
-        return project.playStoreURL;
-      } else if (/android/.test(userAgent)) {
-        return project.playStoreURL;
-      } else if (!os && /linux/.test(userAgent)) {
-        return project.playStoreURL;
-      }
+    if (macosPlatforms.test(userAgent)) {
+      setHref(project.appStoreURL!);
+    } else if (iosPlatforms.test(userAgent)) {
+      setHref(project.appStoreURL!);
+    } else if (windowsPlatforms.test(userAgent)) {
+      setHref(project.playStoreURL!);
+    } else if (/android/.test(userAgent)) {
+      setHref(project.playStoreURL!);
+    } else if (!os && /linux/.test(userAgent)) {
+      setHref(project.playStoreURL!);
     }
-
-    return "";
   }, [project]);
 
   return (
