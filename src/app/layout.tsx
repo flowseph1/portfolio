@@ -3,6 +3,7 @@ import { Header } from "@/components/header";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -30,6 +31,7 @@ export default function RootLayout(props: { children: React.ReactNode }) {
       <body className={`${inter.className} antialiased`} id="body">
         <Header />
         {props.children}
+        <Analytics />
         <Footer />
       </body>
     </html>
