@@ -1,6 +1,6 @@
 import {
   Project,
-  Techonologie,
+  Technology,
   categories,
   companies,
   experiences,

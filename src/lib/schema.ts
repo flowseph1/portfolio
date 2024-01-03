@@ -81,6 +81,6 @@ export const companies = pgTable("companies", {
   name: text("name").notNull(),
 });
 
-export type Techonologie = InferModel<typeof technologies>;
+export type Technology = InferModel<typeof technologies>;
 export type Project = InferModel<typeof projects>;
 export type Experience = InferModel<typeof experiences>;

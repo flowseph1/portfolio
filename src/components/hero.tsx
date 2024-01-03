@@ -36,7 +36,7 @@ export function Hero() {
   }, []);
 
   return (
-    <section className="relative flex flex-col items-center justify-center py-32 z-10">
+    <section className="relative flex flex-col items-center justify-center py-20 sm:py-32 z-10">
       {/* Hero background */}
       <div className="absolute inset-0 -z-20 bg-hero"></div>
       <Container>

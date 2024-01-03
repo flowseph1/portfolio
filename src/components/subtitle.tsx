@@ -12,7 +12,7 @@ export function Subtitle({
     <h3
       className={cx(
         className,
-        "font-[400] text-center text-xl text-neutral-500 max-w-2xl"
+        "font-[400] text-center text-lg px-5 sm:px-0 text-neutral-500 max-w-2xl"
       )}
     >
       {children}
