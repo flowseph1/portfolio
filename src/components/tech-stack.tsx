@@ -3,11 +3,11 @@
 import { Container } from "@/components/container";
 import { Subtitle } from "@/components/subtitle";
 import { Title } from "@/components/title";
-import { Techonologie } from "@/lib/schema";
+import { Technology } from "@/lib/schema";
 import Image from "next/image";
 import { PiBrainBold } from "react-icons/pi";
 
-export function TechStack({ technologies }: { technologies: Techonologie[] }) {
+export function TechStack({ technologies }: { technologies: Technology[] }) {
   const factor = Math.round(technologies.length / 3);
 
   const firstRow = technologies.slice(0, factor);
@@ -15,7 +15,7 @@ export function TechStack({ technologies }: { technologies: Techonologie[] }) {
   const thirdRow = technologies.slice(factor * 2);
 
   return (
-    <section className="flex py-32 space-y-5 ">
+    <section className="flex py-20 sm:py-32 space-y-5 ">
       {/* <p className="text-base text-zinc-500">Main Tech Stack</p> */}
 
       <Container>
@@ -28,17 +28,19 @@ export function TechStack({ technologies }: { technologies: Techonologie[] }) {
           <Subtitle className="mb-7">
             Essential technologies powering my coding ventures
           </Subtitle>
+
+          {/* Large screens */}
           <div className="relative mb-7">
-            <div className="flex flex-col space-y-8 max-w-[1000px] mx-auto overflow-hidden">
+            <div className="flex flex-col space-y-8 max-w-[300px] md:max-w-[1000px] overflow-hidden">
               <AnimatedRow techs={firstRow} />
               <AnimatedRow techs={secondRow} />
               <AnimatedRow techs={thirdRow} />
             </div>
-
             <div className="absolute inset-0 bg-tech-stack" />
-            {/* <div className="absolute left-0 top-0 bottom-0 w-[100px] bg-gradient-to-l from-transparent to-[#eeeeee]" />
-            <div className="absolute right-0 top-0 bottom-0 w-[100px] bg-gradient-to-r from-transparent to-[#eeeeee]" /> */}
           </div>
+
+          {/* Mobile screens */}
+
           <div className="flex justify-center items-center">
             <p className="text-zinc-500">and many others...</p>
           </div>
@@ -48,7 +50,7 @@ export function TechStack({ technologies }: { technologies: Techonologie[] }) {
   );
 }
 
-export function Tech({ tech }: { tech: Techonologie }) {
+export function Tech({ tech }: { tech: Technology }) {
   return (
     <div className="flex px-2">
       <div className="flex shrink-0 items-center justify-center px-5 py-4 border-[0.8px] border-neutral-300/50 rounded-full">
@@ -68,7 +70,7 @@ export function Tech({ tech }: { tech: Techonologie }) {
   );
 }
 
-export function AnimatedRow({ techs }: { techs: Techonologie[] }) {
+export function AnimatedRow({ techs }: { techs: Technology[] }) {
   return (
     <div className="flex flex-row" key={techs[0].name}>
       <div className="flex flex-shrink-0 animate-tech-carousel">
