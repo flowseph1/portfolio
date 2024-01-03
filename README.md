@@ -6,6 +6,7 @@ Visit my portfolio: [https://www.joseacosta.dev](https://www.joseacosta.dev)
 
 ### Technologies Used:
 - **Next JS**: A popular React framework that offers server-side rendering and other powerful features.
+- **Supabase**: A popular solution for backend services.
 - **TypeScript**: Enhancing JavaScript with static type definitions for a more robust codebase.
 - **Drizzle**: A collection of front-end libraries that make interacting with Ethereum smart contracts simpler.
 - **Tailwind CSS**: A utility-first CSS framework for rapid UI development, ensuring a responsive and aesthetic design.
