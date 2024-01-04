@@ -23,7 +23,7 @@ export function Experience({ experience }: { experience: ExperienceData[] }) {
 
       <div className="absolute left-0 top-0 w-full -z-10 h-[20rem] bg-gradient-to-b from-[var(--background)] to-transparent blur-lg"></div>
       <div className="absolute left-0 bottom-0 w-full -z-10 h-[20rem] bg-gradient-to-t from-[var(--background)] to-transparent blur-lg"></div>
-      <div className="absolute left-1/2 top-1/2 w-[40rem] h-[40rem] -z-10  bg-[var(--background)] rounded-full -translate-x-1/2 -translate-y-1/2 blur-lg"></div>
+      <div className="absolute hidden md:block left-1/2 top-1/2 w-[40rem] h-[40rem] -z-10  bg-[var(--background)] rounded-full -translate-x-1/2 -translate-y-1/2 blur-lg"></div>
       <div className="absolute left-0 top-0 w-[20rem] h-[20rem] -z-10  bg-[var(--background)] rounded-full  blur-lg"></div>
 
       <Container>
