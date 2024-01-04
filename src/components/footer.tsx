@@ -35,10 +35,9 @@ export default function Footer() {
             </div>
           </div>
 
-          <p className="text-sm text-neutral-600 mb-3">
-            Copyrigth © 2023{" "}
-            <span className="font-semibold underline">Jose Acosta</span> All
-            Rights Reserved.
+          <p className="text-xs text-neutral-600 mb-3">
+            Designed and Developed by{" "}
+            <span className="font-semibold underline">Jose Acosta</span>
           </p>
           {/* <div className="flex space-x-3">
             <Link href="https://www.linkedin.com/in/josemiguelacosta/">
