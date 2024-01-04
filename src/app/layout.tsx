@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 
     images: [
       {
-        url: "/portfolio-logo.png",
+        url: "/portfolio-og-image.png",
         width: 631,
         height: 663,
         alt: "Jose Acosta Portfolio Logo",
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     images: [
       {
-        url: "/portfolio-logo.png",
+        url: "/portfolio-og-image.png",
         width: 631,
         height: 663,
         alt: "Jose Acosta Portfolio Logo",

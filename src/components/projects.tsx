@@ -60,8 +60,7 @@ export function ProjectList({ projects }: { projects: ProjectData[] }) {
   return (
     <>
       {/* Mobile */}
-
-      <div className="flex relative md:hidden flex-col gap-2 px-5 h-1/2 overflow-hidden">
+      <div className="flex relative md:hidden flex-col gap-4 px-5 h-1/2 overflow-hidden">
         {mobileProjects.map((project) => (
           <ProjectItem project={project} key={project.id} />
         ))}
