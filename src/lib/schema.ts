@@ -48,6 +48,7 @@ export const projects = pgTable("projects", {
   categoryId: integer("category_id").references(() => categories.id),
   slug: varchar("slug", { length: 255 }).notNull(),
   companyId: integer("company_id").references(() => companies.id),
+  order: integer("order").notNull(),
 });
 
 export const projectsTechnologies = pgTable("projects_technologies", {
@@ -69,6 +70,7 @@ export const experiences = pgTable("experience", {
   logo: text("logo"),
   href: text("href"),
   companyId: integer("company_id").references(() => companies.id),
+  order: integer("order").notNull(),
 });
 
 export const experiencesProjects = pgTable("experiences_projects", {
