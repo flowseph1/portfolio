@@ -26,7 +26,7 @@ export function Hero() {
   useEffect(() => {
     const unsubscribe = setInterval(() => {
       setCurrentIndex((prevIndex) =>
-        prevIndex === OPTIONS.length - 1 ? 0 : prevIndex + 1
+        prevIndex === OPTIONS.length - 1 ? 0 : prevIndex + 1,
       );
     }, WORDS_PER_SECONDS);
 
@@ -68,7 +68,7 @@ export function Hero() {
                     key={OPTIONS[currentIndex].text}
                     className={cx(
                       "font-bold bg-clip-text bg-gradient-to-r text-transparent animate-hero-text bg-300%",
-                      OPTIONS[currentIndex].gradient
+                      OPTIONS[currentIndex].gradient,
                     )}
                     initial={{
                       opacity: 0,
@@ -105,7 +105,7 @@ export function Hero() {
                       key={OPTIONS[currentIndex].text}
                       className={cx(
                         "font-bold bg-clip-text bg-gradient-to-r text-transparent animate-hero-text bg-300%",
-                        OPTIONS[currentIndex].gradient
+                        OPTIONS[currentIndex].gradient,
                       )}
                       initial={{
                         opacity: 0,
@@ -142,7 +142,7 @@ export function Hero() {
               <Button
                 text="Download CV"
                 intent="outline"
-                href="download/jose-acosta-resume-2024.pdf"
+                href="download/jose-acosta-resume-2024-2.pdf"
               />
             </div>
           </div>
