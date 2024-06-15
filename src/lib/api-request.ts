@@ -1,6 +1,4 @@
 import {
-  Project,
-  Technology,
   categories,
   companies,
   experiences,
@@ -11,7 +9,6 @@ import {
 } from "@/lib/schema";
 import { eq, sql } from "drizzle-orm";
 import { db } from "./db";
-import { ProjectData } from "@/types";
 
 export async function getTechnologies() {
   return await db.select().from(technologies);
@@ -32,11 +29,11 @@ export async function getProjects() {
     .innerJoin(companies, eq(projects.companyId, companies.id))
     .innerJoin(
       projectsTechnologies,
-      eq(projectsTechnologies.projectId, projects.id)
+      eq(projectsTechnologies.projectId, projects.id),
     )
     .innerJoin(technologies, eq(projectsTechnologies.techId, technologies.id))
     .groupBy(projects.id, categories.id, companies.name)
-    .orderBy(projects.id);
+    .orderBy(projects.order);
 }
 
 export async function getExperiences() {
@@ -52,8 +49,9 @@ export async function getExperiences() {
     .innerJoin(companies, eq(experiences.companyId, companies.id))
     .innerJoin(
       experiencesProjects,
-      eq(experiencesProjects.experienceId, experiences.id)
+      eq(experiencesProjects.experienceId, experiences.id),
     )
     .innerJoin(projects, eq(experiencesProjects.projectId, projects.id))
-    .groupBy(experiences.id, companies.name);
+    .groupBy(experiences.id, companies.name)
+    .orderBy(experiences.order);
 }
