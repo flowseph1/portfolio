@@ -1,4 +1,4 @@
-import { Experience, Project, Techonologie } from "@/lib/schema";
+import { Experience, Project, Technology } from "@/lib/schema";
 
 export type NavBarItem = {
   option: string;

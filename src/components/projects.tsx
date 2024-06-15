@@ -14,7 +14,7 @@ import { FaLaptopCode } from "react-icons/fa";
 
 export function Projects({ projects }: { projects: ProjectData[] }) {
   return (
-    <section className="p-32" id="projects">
+    <section className="py-20 sm:py-32" id="projects">
       <Container>
         <div className="flex justify-center items-center flex-col gap-4">
           <p className="glass-button self-center w-fit justify-center flex gap-2 items-center">
@@ -28,7 +28,7 @@ export function Projects({ projects }: { projects: ProjectData[] }) {
             development.
           </Subtitle>
           <ProjectList projects={projects} />
-          <div className="flex w-full mt-5 items-center gap-4">
+          <div className="flex w-full -mt-10 md:mt-5 items-center gap-4">
             <div className="flex-1 h-[1px] bg-gradient-to-r from-transparent to-neutral-200/60"></div>
             <Link href={"https://github.com/flowseph1"} target="_blank">
               <button className="glass-button hover:shadow-md transition-all flex gap-2">
@@ -55,18 +55,31 @@ export function ProjectList({ projects }: { projects: ProjectData[] }) {
 
   const matrix = [firstCol, secondCol, thirdCol];
 
-  return (
-    <div className="relative flex gap-5 h-[45rem] overflow-hidden mb-10 bg-project-background max-w-6xl ">
-      {matrix.map((col, index) => (
-        <div className="flex flex-1 flex-col gap-5" key={index}>
-          {col.map((project) => (
-            <ProjectItem project={project} key={project.id} />
-          ))}
-        </div>
-      ))}
+  const mobileProjects = projects.slice(0, -3);
 
-      <div className="absolute bottom-0 left-0 right-0 h-[10rem] bg-gradient-to-t from-[var(--background)]"></div>
-    </div>
+  return (
+    <>
+      {/* Mobile */}
+      <div className="flex relative md:hidden flex-col gap-4 px-5 h-1/2 overflow-hidden">
+        {mobileProjects.map((project) => (
+          <ProjectItem project={project} key={project.id} />
+        ))}
+
+        <div className="absolute bottom-0 left-0 right-0 h-[10rem] bg-gradient-to-t via-[var(--background-with-opacity)] from-[var(--background)]"></div>
+      </div>
+
+      <div className="relative hidden md:flex gap-5 h-[45rem] overflow-hidden mb-10 bg-project-background max-w-6xl ">
+        {matrix.map((col, index) => (
+          <div className="flex flex-1 flex-col gap-5" key={index}>
+            {col.map((project) => (
+              <ProjectItem project={project} key={project.id} />
+            ))}
+          </div>
+        ))}
+
+        <div className="absolute bottom-0 left-0 right-0 h-[10rem] bg-gradient-to-t from-[var(--background)]"></div>
+      </div>
+    </>
   );
 }
 

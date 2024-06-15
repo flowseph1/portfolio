@@ -6,7 +6,7 @@ import { Logo } from "@/components/logo";
 
 export default function Footer() {
   return (
-    <footer className="h-[150px] border-t-[1px] border-neutral-200 bg-gradient-to-tr from-neutral-50 to-slate-100">
+    <footer className="h-[150px] px-5 border-t-[1px] border-neutral-200 bg-gradient-to-tr from-neutral-50 to-slate-100">
       <Container>
         <div className="py-10">
           <div className="flex space-x-5 items-center mb-4">
@@ -35,10 +35,9 @@ export default function Footer() {
             </div>
           </div>
 
-          <p className="text-sm text-neutral-600 mb-3">
-            Copyrigth © 2023{" "}
-            <span className="font-semibold underline">Jose Acosta</span> All
-            Rights Reserved.
+          <p className="text-xs text-neutral-600 mb-3">
+            Designed and Developed by{" "}
+            <span className="font-semibold underline">Jose Acosta</span>
           </p>
           {/* <div className="flex space-x-3">
             <Link href="https://www.linkedin.com/in/josemiguelacosta/">
