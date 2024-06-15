@@ -10,16 +10,16 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Jose Acosta",
   description:
-    "Dedicated Front End Developer with extensive expertise in React.js and React Native development. Solid Knowledge of JavaScript and TypeScript, with a passion for simple, maintainable, and readable code. Experienced in optimizing responsive designs for diverse platforms. Familiar with CI/CD pipelines, Git version control, and a proven track record of creating intuitive user interfaces tailored for optimal performance.",
+    "Welcome to Jose Acosta's portfolio. Explore my code creations, discover the technologies I use, and learn more about my professional profile.",
   openGraph: {
     title: "Jose Acosta",
     url: "https://www.joseacosta.dev/",
     description:
-      "Dedicated Front End Developer with extensive expertise in React.js and React Native development. Solid Knowledge of JavaScript and TypeScript, with a passion for simple, maintainable, and readable code. ",
-
+      "Welcome to Jose Acosta's portfolio. Explore my code creations, discover the technologies I use, and learn more about my professional profile.",
+    siteName: "Jose Acosta Portfolio",
     images: [
       {
-        url: "/portfolio-og-image.png",
+        url: "https://github.com/flowseph1/portfolio/blob/master/public/portoflio-og-image.png?raw=true",
         width: 631,
         height: 663,
         alt: "Jose Acosta Portfolio Logo",
@@ -30,11 +30,11 @@ export const metadata: Metadata = {
   twitter: {
     title: "Jose Acosta",
     description:
-      "Dedicated Front End Developer with extensive expertise in React.js and React Native development. Solid Knowledge of JavaScript and TypeScript, with a passion for simple, maintainable, and readable code. ",
+      "Welcome to Jose Acosta's portfolio. Explore my code creations, discover the technologies I use, and learn more about my professional profile.",
     card: "summary_large_image",
     images: [
       {
-        url: "/portfolio-og-image.png",
+        url: "https://github.com/flowseph1/portfolio/blob/master/public/portoflio-og-image.png?raw=true",
         width: 631,
         height: 663,
         alt: "Jose Acosta Portfolio Logo",
